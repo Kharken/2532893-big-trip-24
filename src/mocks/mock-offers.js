@@ -28,7 +28,7 @@ const createOffersSpecialList = (value, item) => {
 const createOffersMockList = (offer) => {
   return Object.values(offer).map((item) => new Object({
     type: item,
-    offers: createOffersSpecialList(3, item)
+    offers: createOffersSpecialList(7, item)
   }))
 }
 

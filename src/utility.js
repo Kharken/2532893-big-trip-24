@@ -11,6 +11,10 @@ const createIDfromTitle = (title) => {
 
 }
 
-export {createDynamicMarkup, capitalizeWord, createIDfromTitle}
+const getRandomArrayElement = (array) => {
+    return array[Math.floor(Math.random() * (array.length - 1))]
+}
+
+export {createDynamicMarkup, capitalizeWord, createIDfromTitle, getRandomArrayElement}
 
 
