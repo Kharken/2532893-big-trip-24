@@ -9,17 +9,25 @@ const pointsListElement = new PointsListView();
 export default class MainPresenter {
 
 
-  constructor({container}) {
+  constructor({container, offersModel, destinationsModel, pointsModel}) {
     this.container = container;
+    this.offersModel = offersModel;
+    this.destinationsModel = destinationsModel;
+    this.pointsModel = pointsModel;
   }
 
 
   init(){
+    this.offers = [...this.offersModel.getOffers()]
+    this.destinations = [...this.destinationsModel.getDestinations()]
+    this.points = [...this.pointsModel.getPoints()]
+
+
     render(new FormCreateView(), this.container)
     render(new FormEditView(), this.container)
     render(pointsListElement, this.container)
-    for (let i = 0; i < 3; i++){
-      render(new PointView(), pointsListElement.getElement())
+    for (let i = 0; i < this.points.length; i++){
+      render(new PointView({point: this.points[i]}), pointsListElement.getElement())
     }
 
   }

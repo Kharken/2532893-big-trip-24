@@ -8,7 +8,7 @@ const getRandomType = (listENum) => {
 
 
 const createMockPoints = (array, offers) => {
-  array.map((item, index) => {
+  return array.map((item, index) => {
       return new Object({
         basePrice: 1,
         dateFrom: '1',

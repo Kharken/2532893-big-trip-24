@@ -1,13 +1,36 @@
 import {createElement} from "../render";
+import {createDestinationsMockList, DestinationsList} from "../mocks/mock-destinations";
 
-const createPointTemplate = () => {
+const createOfferTemplate = (array) => {
+  let offersListItemMarkup = ``
+
+  for (let i = 0; i < array.length; i++){
+    offersListItemMarkup += `
+    <li class="event__offer">
+      <span class="event__offer-title">${array[i].offers[4].title}</span>
+      &plus;&euro;&nbsp;
+      <span class="event__offer-price">20</span>
+    </li>
+  `
+
+  }
+
+  return offersListItemMarkup;
+}
+
+const createPointTemplate = (point) => {
+  const {destination, type, offers} = point;
+
+  const destinationsInfoList = createDestinationsMockList(DestinationsList)
+  const cityName = (destinationsInfoList.find(item => item.id === point.destination.id)).name
+
   return `<li class="trip-events__item">
               <div class="event">
                 <time class="event__date" datetime="2019-03-18">MAR 18</time>
                 <div class="event__type">
                   <img class="event__type-icon" width="42" height="42" src="img/icons/taxi.png" alt="Event type icon">
                 </div>
-                <h3 class="event__title">Taxi Amsterdam</h3>
+                <h3 class="event__title">${type} ${cityName}</h3>
                 <div class="event__schedule">
                   <p class="event__time">
                     <time class="event__start-time" datetime="2019-03-18T10:30">10:30</time>
@@ -21,11 +44,7 @@ const createPointTemplate = () => {
                 </p>
                 <h4 class="visually-hidden">Offers:</h4>
                 <ul class="event__selected-offers">
-                  <li class="event__offer">
-                    <span class="event__offer-title">Order Uber</span>
-                    &plus;&euro;&nbsp;
-                    <span class="event__offer-price">20</span>
-                  </li>
+                  ${createOfferTemplate(offers)}
                 </ul>
                 <button class="event__favorite-btn event__favorite-btn--active" type="button">
                   <span class="visually-hidden">Add to favorite</span>
@@ -41,8 +60,12 @@ const createPointTemplate = () => {
 }
 
 export default class PointView {
+  constructor({point}) {
+    this.point = point;
+  }
+
   getTemplate(){
-    return createPointTemplate();
+    return createPointTemplate(this.point);
   }
 
   getElement(){
@@ -57,3 +80,5 @@ export default class PointView {
     this.element = null;
   }
 }
+
+console.log()
