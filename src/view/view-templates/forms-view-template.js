@@ -3,6 +3,7 @@ import { EventTypesListToLowerCase, createEventTypeTemplate} from "./event-types
 import {Cities, createOptionCityTemplate} from "./option-cities-template";
 import {Offers, createOfferTemplate} from "./offers-template";
 import {createDynamicMarkup, capitalizeWord} from "../../utility";
+import {createDestinationsMockList, DestinationsList} from "../../mocks/mock-destinations";
 
 const BUTTON_TEXT = {
   CREATE_FORM: 'Save',
@@ -10,6 +11,8 @@ const BUTTON_TEXT = {
 }
 
 const createFormTemplate = (buttonText) => {
+  const destination = createDestinationsMockList(DestinationsList)
+
   return `<form class="event event--edit" action="#" method="post">
                 <header class="event__header">
                   <div class="event__type-wrapper">
