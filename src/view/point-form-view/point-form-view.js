@@ -17,8 +17,6 @@ const eventTypeList = createSimilarComponentsList(Object.values(eventTypeData), 
 const eventCityList = createSimilarComponentsList(Object.values(eventCityData), createEventCityItemTemplate);
 const eventOfferSelectorItemList = createSimilarComponentsList(Object.entries(eventOfferSelectorData), createEventOfferSelectorItemTemplate);
 
-console.log(eventOfferSelectorItemList);
-
 const createPointFormViewTemplate = (buttonValue) => (
   `
               <form class="event event--edit" action="#" method="post">
